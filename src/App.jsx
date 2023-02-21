@@ -1,12 +1,11 @@
-import { Counter } from "./components/Counter/Counter"
-import { RandomUser } from "./components/RandomUser/RandomUser"
-
+import { Counter } from "components/Counter/Counter";
+import { RandomUser } from "components/RandomUser/RandomUser";
+import s from "./App.module.css";
 export function App() {
-
-    return (
-        <div style={{ height: "90vh", display: "flex", justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-            <Counter initialValue={0} />
-            <RandomUser />
-        </div>
-    )
+  return (
+    <div className={s.root}>
+      <Counter initialValue={0} />
+      <RandomUser />
+    </div>
+  );
 }

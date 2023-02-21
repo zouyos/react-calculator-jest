@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import { RandomUser } from "./RandomUser";
+import { RandomUser } from "components/RandomUser/RandomUser";
 
 describe("<RandomUser/>", () => {
   it("loads a user", async () => {
