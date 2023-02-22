@@ -1,19 +1,23 @@
 import { useState } from "react";
 
-export function Counter({ initialValue }) {
+export function Counter({ initialValue, onCounterUpdate }) {
   const [counter, setCounter] = useState(initialValue);
 
   function increment() {
     setCounter(counter + 1);
+    onCounterUpdate();
   }
   function decrement() {
     setCounter(counter - 1);
+    onCounterUpdate();
   }
   function reset() {
     setCounter(0);
+    onCounterUpdate();
   }
   function switchSign() {
     setCounter(-counter);
+    onCounterUpdate();
   }
 
   return (

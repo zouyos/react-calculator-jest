@@ -2,8 +2,9 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { Counter } from "components/Counter/Counter";
 
 describe("<Counter/>", () => {
+  const onCounterUpdate = jest.fn();
   beforeEach(() => {
-    render(<Counter initialValue={99} />);
+    render(<Counter initialValue={99} onCounterUpdate={onCounterUpdate} />);
   });
 
   it("has a title element", () => {
@@ -30,25 +31,39 @@ describe("<Counter/>", () => {
     expect(getCounter()).toBe("100");
   });
 
-  it("decrement by one when clicking on decrement button", () => {
+  it("decrements by one when clicking on decrement button", () => {
     //  render(<Counter initialValue={99} />);
     const btnIncrement = screen.getByTestId("decrementBtn");
     fireEvent.click(btnIncrement);
     expect(getCounter()).toBe("98");
   });
 
-  it("reset to 0 when clicking on reset button", () => {
+  it("resets to 0 when clicking on reset button", () => {
     //  render(<Counter initialValue={99} />);
     const btnReset = screen.getByTestId("resetBtn");
     fireEvent.click(btnReset);
     expect(getCounter()).toBe("0");
   });
 
-  it("switch to opposite sign when clicking on switch sign button", () => {
+  it("switches to opposite sign when clicking on switch sign button", () => {
     //  render(<Counter initialValue={99} />);
     const btnSwitchSign = screen.getByTestId("switchSignBtn");
     fireEvent.click(btnSwitchSign);
     expect(getCounter()).toBe("-99");
+  });
+
+  it("increases the number of actions performed when a button is clicked", () => {
+    const btnSwitchSign = screen.getByTestId("switchSignBtn");
+    const btnReset = screen.getByTestId("resetBtn");
+    const btnDecrement = screen.getByTestId("decrementBtn");
+    const btnIncrement = screen.getByTestId("incrementBtn");
+
+    fireEvent.click(btnSwitchSign);
+    fireEvent.click(btnReset);
+    fireEvent.click(btnDecrement);
+    fireEvent.click(btnIncrement);
+
+    expect(onCounterUpdate).toHaveBeenCalledTimes(4);
   });
 });
 
