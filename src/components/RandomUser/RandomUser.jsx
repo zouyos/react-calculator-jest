@@ -8,6 +8,7 @@ export function RandomUser({}) {
       .results[0];
     setCurrentUser(user);
   }
+
   return (
     <>
       {currentUser && (
